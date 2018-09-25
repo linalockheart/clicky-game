@@ -1,0 +1,14 @@
+.navbar-nav {
+    margin-left: auto !important;
+}
+
+.your-score {
+    /* padding-right: 50% !important;*/
+    padding-left: 20% !important;
+}
+
+.high-score {
+    padding-right: 10% !important;
+    padding-left: 20% !important;
+    text-align: right !important;
+}
