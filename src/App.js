@@ -4,6 +4,7 @@ import './App.css';
 import starters from "./starters.json";
 import Nav from "./components/Nav";
 import Wrapper from "./components/Wrapper";
+import Title from "./components/Title";
 
 class App extends Component {
   state = {
@@ -19,6 +20,10 @@ class App extends Component {
     <div>
     <Nav/>
     <Wrapper>
+    <Title>Click each starter Pokemon once to earn points.
+    <br></br>
+    Click the same Pokemon twice and it's game over.
+    </Title>
       {this.state.starters.map(starter => (
         <ImageCard
           id={starter.id}
