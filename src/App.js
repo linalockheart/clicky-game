@@ -11,7 +11,7 @@ class App extends Component {
     starters,
     yourScore: 0,
     highScore: 0,
-    checkGuess: "",
+    yourGuess: "",
     imgClicked: []
   };
 
