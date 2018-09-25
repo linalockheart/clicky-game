@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ImageCard from "./components/ImageCard";
+// import logo from './logo.svg'; //Can I take this out?
 import './App.css';
+import starters from "./starters.json";
 
 class App extends Component {
+  state = {
+    starters
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+    <div>
+      {this.state.starters.map(starter => (
+        <ImageCard
+          id={starter.id}
+          key={starter.id}
+          name={starter.name}
+          image={starter.image}
+        />
+      ))}
       </div>
     );
   }
