@@ -1,7 +1,7 @@
 import React from "react";
 import "./Nav.css";
 
-const Nav = () => (
+const Nav = props => (
 
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <h3 className="navbar-text">Starter Pokemon Clicky Game</h3>

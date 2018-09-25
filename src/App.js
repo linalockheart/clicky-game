@@ -2,21 +2,23 @@ import React, { Component } from 'react';
 import ImageCard from "./components/ImageCard";
 import './App.css';
 import starters from "./starters.json";
-import Nav from "./components/Nav/Nav";
+import Nav from "./components/Nav";
+import Wrapper from "./components/Wrapper";
 
 class App extends Component {
   state = {
     starters,
     yourScore: 0,
     highScore: 0,
-    checkImage: "",
-    clicked: []
+    checkGuess: "",
+    imgClicked: []
   };
 
   render() {
     return (
     <div>
     <Nav/>
+    <Wrapper>
       {this.state.starters.map(starter => (
         <ImageCard
           id={starter.id}
@@ -25,6 +27,7 @@ class App extends Component {
           image={starter.image}
         />
       ))}
+      </Wrapper>
       </div>
     );
   }
