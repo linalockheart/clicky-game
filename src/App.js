@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ImageCard from "./components/ImageCard";
-// import logo from './logo.svg'; //Can I take this out?
 import './App.css';
 import starters from "./starters.json";
 
