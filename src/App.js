@@ -16,27 +16,24 @@ class App extends Component {
     clicked: []
   };
 
-  randomizeCards = (starters) => {
-    for (let i = 0; i > starters.length; i++) {
-      let shuffledPokemon = starters[Math.floor(Math.random() * starters.length)];
-      starters = shuffledPokemon;
-    }
-    return starters;
-  };
-
   handleClick = id => {
     console.log(id);
 
-    if (this.clicked === false) {
-      console.log("clicked"); //not showing up, not sure why
-      this.handleIncrement();
-      this.setState({ clicked: true });
-      this.randomizeCards(starters);
+    const chosenPokemon = this.state.starters.find(name => name.id === id);
+    console.log(chosenPokemon); //showing as false YES!
+
+    if (chosenPokemon.clicked === false) { //this isn't working
+    console.log("clicked"); 
+    chosenPokemon.clicked = true;
+    console.log(chosenPokemon); //showing as true
+    const starters = this.state.starters.sort((a,b) => 0.5 - Math.random());
+    this.setState({ starters: starters })
+    this.handleIncrement();
     }
+  
+
     else {
-      console.log("Sorry, game over!");
-      //call function to reset score
-      //make a game over modal or something
+      alert("Sorry, game over!");
     }
 
   };
@@ -67,6 +64,7 @@ class App extends Component {
           clicked={starter.clicked}
           handleClick={this.handleClick}
           handleIncrement={this.handleIncrement}
+          randomizeCards={this.randomizeCards}
         />
       ))}
       </Wrapper>
