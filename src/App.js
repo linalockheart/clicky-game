@@ -11,28 +11,29 @@ class App extends Component {
   state = {
     starters: starters,
     yourScore: 0,
-    highScore: 21,
+    highScore: 0,
     yourGuess: "",
     clicked: []
   };
 
   handleClick = id => {
-    console.log(id);
 
     const chosenPokemon = this.state.starters.find(name => name.id === id);
-    console.log(chosenPokemon); //showing as false YES!
+    console.log(chosenPokemon); //showing clicked as false
 
-    if (chosenPokemon.clicked === false) { //this isn't working
-    console.log("clicked"); 
-    chosenPokemon.clicked = true;
-    console.log(chosenPokemon); //showing as true
-    const starters = this.state.starters.sort((a,b) => 0.5 - Math.random());
-    this.setState({ starters: starters })
-    this.handleIncrement();
+    if (chosenPokemon.clicked === false) { 
+      chosenPokemon.clicked = true;
+      console.log(chosenPokemon); //showing clicked as true YES!
+      const starters = this.state.starters.sort((a,b) => 0.5 - Math.random());
+      this.setState({ starters: starters })
+      this.handleIncrement();
     }
-  
 
     else {
+      if (this.state.yourScore > this.state.highScore) {
+        this.setState({highScore: this.state.yourScore});
+      }
+      this.setState({yourScore: 0});
       alert("Sorry, game over!");
     }
 
@@ -58,13 +59,11 @@ class App extends Component {
       {this.state.starters.map(starter => (
         <ImageCard
           id={starter.id}
-          key={starter.id} //do i need the key for this one?
+          key={starter.id}
           name={starter.name}
           image={starter.image}
           clicked={starter.clicked}
           handleClick={this.handleClick}
-          handleIncrement={this.handleIncrement}
-          randomizeCards={this.randomizeCards}
         />
       ))}
       </Wrapper>
