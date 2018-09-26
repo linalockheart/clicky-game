@@ -11,29 +11,31 @@ class App extends Component {
   state = {
     starters: starters,
     yourScore: 0,
-    highScore: 0,
+    highScore: 21,
     yourGuess: "",
     clicked: []
   };
 
-  // shuffleCards(array) {
-  //   let i = array.length,
-  //     j = 0,
-  //     temp;
+  randomizeCards = (starters) => {
+    for (let i = 0; i > starters.length; i++) {
+      let shuffledPokemon = starters[Math.floor(Math.random() * starters.length)];
+      starters = shuffledPokemon;
+    }
+    return starters;
+  };
 
   handleClick = id => {
+    console.log(id);
 
-    let clicked = this.state.starters.clicked; 
-    //something isn't right here
-
-    if (clicked === false) {
+    if (this.clicked === false) {
       console.log("clicked"); //not showing up, not sure why
       this.handleIncrement();
       this.setState({ clicked: true });
+      this.randomizeCards(starters);
     }
     else {
       console.log("Sorry, game over!");
-      //call function to reset game
+      //call function to reset score
       //make a game over modal or something
     }
 
@@ -48,7 +50,7 @@ class App extends Component {
     <div>
     <Nav
     yourScore={this.state.yourScore}
-    highSchore={this.state.highScore}
+    highScore={this.state.highScore}
     yourGuess={this.state.yourGuess}
     />
     <Wrapper>
