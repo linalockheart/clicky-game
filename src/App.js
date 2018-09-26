@@ -32,9 +32,13 @@ class App extends Component {
     else {
       if (this.state.yourScore > this.state.highScore) {
         this.setState({highScore: this.state.yourScore});
+        alert("Game Over! Congrats on your new high score!")
+        this.setState({yourScore: 0});
       }
+      else{
       this.setState({yourScore: 0});
-      alert("Sorry, game over!");
+      alert("Oops, you already clicked that one! That's game over!");
+      }
     }
 
   };
