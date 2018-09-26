@@ -8,11 +8,25 @@ import Title from "./components/Title";
 
 class App extends Component {
   state = {
-    starters,
+    starters: starters,
     yourScore: 0,
     highScore: 0,
     yourGuess: "",
     imgClicked: []
+  };
+
+  handleClick = id => {
+    if (this.state.clicked.indexOf(id) === -1) {
+      this.handleIncrement();
+      this.setState({ clicked: this.state.clicked.concat(id) });
+    else {
+      console.log("not sure what to put here yet lol");
+    }
+
+  }
+
+  handleIncrement = () => {
+    this.setState({ yourScore: this.state.yourScore + 1 });
   };
 
   render() {
@@ -30,6 +44,9 @@ class App extends Component {
           key={starter.id}
           name={starter.name}
           image={starter.image}
+          clicked={starter.clicked}
+          yourScore={this.state.yourScore}
+          handleIncrement={this.handleIncrement}
         />
       ))}
       </Wrapper>
