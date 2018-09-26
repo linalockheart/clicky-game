@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
 import ImageCard from "./components/ImageCard";
-import './App.css';
 import starters from "./starters.json";
 import Nav from "./components/Nav";
 import Wrapper from "./components/Wrapper";
 import Title from "./components/Title";
+import './App.css';
 
 class App extends Component {
+
   state = {
     starters: starters,
     yourScore: 0,
     highScore: 0,
     yourGuess: "",
-    imgClicked: []
+    clicked: []
   };
 
   handleClick = id => {
-    if (this.state.clicked.indexOf(id) === -1) {
+
+    let clicked = this.state.starters.clicked;
+
+    if (clicked === false) {
+      console.log("clicked"); //not showing up, not sure why
       this.handleIncrement();
-      this.setState({ clicked: this.state.clicked.concat(id) });
+      this.setState({ clicked: true });
+    }
     else {
-      console.log("not sure what to put here yet lol");
+      console.log("Sorry, game over!");
+      //call function to reset game
+      //make a game over modal or something
     }
 
   }
@@ -45,7 +53,7 @@ class App extends Component {
           name={starter.name}
           image={starter.image}
           clicked={starter.clicked}
-          yourScore={this.state.yourScore}
+          handleClick={this.handleClick}
           handleIncrement={this.handleIncrement}
         />
       ))}
