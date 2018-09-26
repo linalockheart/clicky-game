@@ -16,9 +16,15 @@ class App extends Component {
     clicked: []
   };
 
+  // shuffleCards(array) {
+  //   let i = array.length,
+  //     j = 0,
+  //     temp;
+
   handleClick = id => {
 
-    let clicked = this.state.starters.clicked;
+    let clicked = this.state.starters.clicked; 
+    //something isn't right here
 
     if (clicked === false) {
       console.log("clicked"); //not showing up, not sure why
@@ -31,7 +37,7 @@ class App extends Component {
       //make a game over modal or something
     }
 
-  }
+  };
 
   handleIncrement = () => {
     this.setState({ yourScore: this.state.yourScore + 1 });
@@ -40,7 +46,11 @@ class App extends Component {
   render() {
     return (
     <div>
-    <Nav/>
+    <Nav
+    yourScore={this.state.yourScore}
+    highSchore={this.state.highScore}
+    yourGuess={this.state.yourGuess}
+    />
     <Wrapper>
     <Title>Click each starter Pokemon once to earn points.
     <br></br>
@@ -49,7 +59,7 @@ class App extends Component {
       {this.state.starters.map(starter => (
         <ImageCard
           id={starter.id}
-          key={starter.id}
+          key={starter.id} //do i need the key for this one?
           name={starter.name}
           image={starter.image}
           clicked={starter.clicked}
