@@ -9,35 +9,46 @@ import './App.css';
 class App extends Component {
 
   state = {
-    starters: starters,
+    starters: starters.map(starter => ({...starter})),
     yourScore: 0,
     highScore: 0,
     yourGuess: "",
-    clicked: []
   };
+
+
 
   handleClick = id => {
 
     const chosenPokemon = this.state.starters.find(name => name.id === id);
-    console.log(chosenPokemon); //showing clicked as false
+    console.log(chosenPokemon);
 
     if (chosenPokemon.clicked === false) { 
       chosenPokemon.clicked = true;
-      console.log(chosenPokemon); //showing clicked as true YES!
-      const starters = this.state.starters.sort((a,b) => 0.5 - Math.random());
-      this.setState({ starters: starters })
+      console.log(chosenPokemon);
+      const shuffledStarters = this.state.starters.sort((a,b) => 0.5 - Math.random());
+      this.setState({ starters: shuffledStarters })
       this.handleIncrement();
+      console.log(this.state.yourScore);
+
+      if (this.state.yourScore === 21) {
+        alert("Congratulations! You won the game!");
+        this.setState({highScore: this.state.yourScore, 
+                      yourScore: 0, 
+                      starters: starters.map(starter => ({...starter}))});
+      }
     }
 
     else {
       if (this.state.yourScore > this.state.highScore) {
-        this.setState({highScore: this.state.yourScore});
         alert("Game Over! Congrats on your new high score!")
-        this.setState({yourScore: 0});
+        this.setState({highScore: this.state.yourScore,
+                      yourScore: 0, 
+                      starters: starters.map(starter => ({...starter}))});
       }
-      else{
-      this.setState({yourScore: 0});
-      alert("Oops, you already clicked that one! That's game over!");
+      else {
+        alert("Oops, you already clicked that one! That's game over!");
+        this.setState({yourScore: 0,
+                      starters: starters.map(starter => ({...starter}))});
       }
     }
 
@@ -45,9 +56,17 @@ class App extends Component {
 
   handleIncrement = () => {
     this.setState({ yourScore: this.state.yourScore + 1 });
+    console.log(this.state.yourScore);
   };
 
-  render() {
+
+  render() { 
+    
+    console.log(starters[0]);
+    console.log(this.state.starters[0]);
+    console.log(starters[0] === this.state.starters[0]);
+
+
     return (
     <div>
     <Nav
@@ -66,7 +85,7 @@ class App extends Component {
           key={starter.id}
           name={starter.name}
           image={starter.image}
-          clicked={starter.clicked}
+          clicked={starter.clicked} //
           handleClick={this.handleClick}
         />
       ))}
