@@ -29,6 +29,9 @@ class App extends Component {
       this.setState({ starters: shuffledStarters })
       this.handleIncrement();
       console.log(this.state.yourScore);
+    }
+
+    else {
 
       if (this.state.yourScore === 21) {
         alert("Congratulations! You won the game!");
@@ -36,15 +39,14 @@ class App extends Component {
                       yourScore: 0, 
                       starters: starters.map(starter => ({...starter}))});
       }
-    }
 
-    else {
-      if (this.state.yourScore > this.state.highScore) {
+      else if (this.state.yourScore > this.state.highScore) {
         alert("Game Over! Congrats on your new high score!")
         this.setState({highScore: this.state.yourScore,
                       yourScore: 0, 
                       starters: starters.map(starter => ({...starter}))});
       }
+
       else {
         alert("Oops, you already clicked that one! That's game over!");
         this.setState({yourScore: 0,
@@ -61,12 +63,6 @@ class App extends Component {
 
 
   render() { 
-    
-    console.log(starters[0]);
-    console.log(this.state.starters[0]);
-    console.log(starters[0] === this.state.starters[0]);
-
-
     return (
     <div>
     <Nav
