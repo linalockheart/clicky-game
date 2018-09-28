@@ -5,7 +5,7 @@ A memory game created with React featuring the starter Pokemon from Kanto all th
 <p>
 
 <p align="center">
-<img alt="Pokemon Clicky Game" src="#" style="width: 80px;">
+<img alt="Pokemon Clicky Game" src="./public/clickygame.png"" style="width: 80px;">
 </p>
 
 <h2>Built With</h2>
