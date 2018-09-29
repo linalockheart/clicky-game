@@ -16,6 +16,7 @@ A memory game created with React featuring the starter Pokemon from Kanto all th
   <li>Bootstrap</li>
   <li>Google Fonts</li>
   <li>JavaScript</li>
+  <li>NodeJS</li>
 </ul>
 
 <h2>How does it work?</h2>
